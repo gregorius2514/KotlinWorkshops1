@@ -14,6 +14,8 @@ repositories {
 	mavenCentral()
 }
 dependencies {
+	compile("io.vavr:vavr:0.10.2")
+
 	implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-security")
