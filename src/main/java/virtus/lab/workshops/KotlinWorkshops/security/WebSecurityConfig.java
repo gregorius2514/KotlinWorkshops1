@@ -1,4 +1,4 @@
-package virtus.lab.workshops.KotlinWorkshops;
+package virtus.lab.workshops.KotlinWorkshops.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,17 +17,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/", "/home").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-//                .loginPage("/login")
-                .permitAll()
-                .and()
-                .logout()
                 .permitAll();
     }
 
+//    TODO [hbysiak] this will be replaced by fetching data from the database once we add one
     @Bean
     @Override
     public UserDetailsService userDetailsService() {
