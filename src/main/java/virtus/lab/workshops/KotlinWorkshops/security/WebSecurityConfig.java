@@ -18,17 +18,17 @@ import java.util.Objects;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Autowired
     private DataSource dataSource;
 
     @Autowired
-    public WebSecurityConfig(DataSource dataSource) {
-        Objects.requireNonNull(dataSource, "Expected non-null dataSource");
-        this.dataSource = dataSource;
-    }
-
-    @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(jdbcUserDetailsManager()).passwordEncoder(passwordEncoder());
+        auth
+                .jdbcAuthentication()
+                .dataSource(dataSource)
+                .passwordEncoder(passwordEncoder())
+                .usersByUsernameQuery("select username,password, enabled from users where username=?")
+                .authoritiesByUsernameQuery("select username, role from authorities where username=?");
     }
 
     @Override
@@ -40,14 +40,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/login.html")
                 .permitAll();
-    }
-
-    @Bean
-    public JdbcUserDetailsManager jdbcUserDetailsManager() {
-        JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager();
-        jdbcUserDetailsManager.setDataSource(dataSource);
-
-        return jdbcUserDetailsManager;
     }
 
     @Bean
