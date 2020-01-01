@@ -5,7 +5,7 @@
 </head>
 <body>
 <h1 th:text="#{label.form.title}">form</h1>
-<form action="/" th:object="${user}" method="POST" enctype="utf8">
+<form action="#" th:action="@{/registration}" th:object="${userDto}" method="POST" enctype="utf8">
     <div>
         <label th:text="#{label.user.firstName}">first</label>
         <input th:field="*{firstName}"/>
