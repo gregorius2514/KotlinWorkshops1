@@ -7,13 +7,21 @@ plugins {
     kotlin("jvm") version "1.3.50"
     kotlin("plugin.spring") version "1.3.50"
     kotlin("plugin.jpa") version "1.3.50"
+    application
 }
-group = "virtus.lab.workshops"
-version = "0.0.1-SNAPSHOT"
+
+group = "com.virtuslab.workshops.kotlin"
+version = "0.0.1"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
+
 repositories {
     mavenCentral()
 }
+
+application {
+    mainClassName = "com.virtuslab.workshops.kotlin.KotlinWorkshopsApplication"
+}
+
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
