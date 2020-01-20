@@ -1,4 +1,4 @@
-package virtus.lab.workshops.KotlinWorkshops.model;
+package virtus.lab.workshops.KotlinWorkshops.model.dto;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;

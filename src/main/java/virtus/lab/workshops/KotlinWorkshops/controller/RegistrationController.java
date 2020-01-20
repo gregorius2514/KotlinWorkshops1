@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import virtus.lab.workshops.KotlinWorkshops.model.UserDto;
+import virtus.lab.workshops.KotlinWorkshops.model.dto.UserDto;
 import virtus.lab.workshops.KotlinWorkshops.service.RegistrationService;
 
 import javax.validation.Valid;
