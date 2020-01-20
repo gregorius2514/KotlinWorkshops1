@@ -15,10 +15,13 @@
 --------------------------------
 -- username: admin, password: admin
 INSERT INTO users (id, email, first_name, last_name, password)
-VALUES (1, 'admin@test.pl', 'admin', 'admin', '$2y$12$eriM5C1/zX/X.3k3Fnz1luX7tGWB4K6HgASwXf5owapJzsVqg7Opu');
+VALUES (1000, 'admin@test.pl', 'admin', 'admin', '$2y$12$eriM5C1/zX/X.3k3Fnz1luX7tGWB4K6HgASwXf5owapJzsVqg7Opu');
 
 INSERT INTO roles (id, name)
-VALUES (1, 'ADMIN');
+VALUES (1000, 'ADMIN');
+
+INSERT INTO roles (id, name)
+VALUES (1001, 'USER');
 
 INSERT INTO user_role
-VALUES (1, 1);
+VALUES (1000, 1000);
