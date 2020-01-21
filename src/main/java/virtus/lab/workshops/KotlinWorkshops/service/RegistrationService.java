@@ -4,5 +4,5 @@ import virtus.lab.workshops.KotlinWorkshops.model.dto.UserDto;
 
 public interface RegistrationService {
 
-    void createAccount(UserDto userDto, String roleName);
+    void createAccount(UserDto userDto);
 }

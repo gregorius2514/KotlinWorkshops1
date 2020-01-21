@@ -23,6 +23,10 @@ public class UserDto {
     @Email
     private String email;
 
+    @NotNull
+    @NotEmpty
+    private String userType;
+
     public String getFirstName() {
         return firstName;
     }
@@ -61,5 +65,13 @@ public class UserDto {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
     }
 }

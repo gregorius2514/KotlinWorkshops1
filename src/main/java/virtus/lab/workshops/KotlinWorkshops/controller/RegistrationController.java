@@ -39,7 +39,7 @@ public class RegistrationController {
             redirectAttrs.addFlashAttribute("userDto", userDto);
             return "registration";
         }
-        registrationService.createAccount(userDto, "PARTICIPANT");
+        registrationService.createAccount(userDto);
         return "redirect:/login";
 
     }

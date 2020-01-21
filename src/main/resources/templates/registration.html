@@ -34,6 +34,12 @@
         <label th:text="#{label.user.confirmPass}">confirm</label>
         <input type="password" th:field="*{matchingPassword}"/>
     </div>
+    <div>
+        <input type="radio" th:field="*{userType}" th:value="PARTICIPANT" />
+        <label th:text="Participant"/>
+        <input type="radio" th:field="*{userType}" th:value="ORGANIZER" />
+        <label th:text="Organizer"/>
+    </div>
     <button type="submit" th:text="#{label.form.submit}">submit</button>
 </form>
 

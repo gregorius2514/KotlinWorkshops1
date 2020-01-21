@@ -26,13 +26,13 @@ public class RegistrationServiceImpl implements RegistrationService {
     }
 
     @Override
-    public void createAccount(UserDto userDto, String roleName) {
+    public void createAccount(UserDto userDto) {
         User user = new User();
         user.setEmail(userDto.getEmail());
         user.setFirstName(userDto.getFirstName());
         user.setLastName(userDto.getLastName());
         user.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
-        user.setRoles(new HashSet<>(roleRepository.findByName(roleName)));
+        user.setRoles(new HashSet<>(roleRepository.findByName(userDto.getUserType())));
         userRepository.save(user);
     }
 }
