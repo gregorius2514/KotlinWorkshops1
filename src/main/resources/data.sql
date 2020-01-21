@@ -21,7 +21,7 @@ INSERT INTO roles (id, name)
 VALUES (1000, 'ADMIN');
 
 INSERT INTO roles (id, name)
-VALUES (1001, 'USER');
+VALUES (1001, 'PARTICIPANT');
 
 INSERT INTO user_role
 VALUES (1000, 1000);
