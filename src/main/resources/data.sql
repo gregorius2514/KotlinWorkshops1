@@ -15,16 +15,16 @@
 --------------------------------
 -- username: admin, password: admin
 INSERT INTO users (id, email, first_name, last_name, password)
-VALUES (1000, 'admin@test.pl', 'admin', 'admin', '$2y$12$eriM5C1/zX/X.3k3Fnz1luX7tGWB4K6HgASwXf5owapJzsVqg7Opu');
+VALUES (users_seq.nextval, 'admin@test.pl', 'admin', 'admin', '$2y$12$eriM5C1/zX/X.3k3Fnz1luX7tGWB4K6HgASwXf5owapJzsVqg7Opu');
 
 INSERT INTO roles (id, name)
-VALUES (1000, 'ADMIN');
+VALUES (roles_seq.nextval, 'ADMIN');
 
 INSERT INTO roles (id, name)
-VALUES (1001, 'PARTICIPANT');
+VALUES (roles_seq.nextval, 'PARTICIPANT');
 
 INSERT INTO roles (id, name)
-VALUES (1002, 'ORGANIZER');
+VALUES (roles_seq.nextval, 'ORGANIZER');
 
-INSERT INTO user_role
-VALUES (1000, 1000);
+INSERT INTO user_role (user_id, role_id)
+VALUES ((SELECT id from users where email = 'admin@test.pl'), (SELECT id from roles where name = 'ADMIN'));
