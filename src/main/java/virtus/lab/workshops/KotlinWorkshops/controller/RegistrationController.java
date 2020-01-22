@@ -13,11 +13,15 @@ import virtus.lab.workshops.KotlinWorkshops.model.dto.UserDto;
 import virtus.lab.workshops.KotlinWorkshops.service.RegistrationService;
 
 import javax.validation.Valid;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 @Controller
 @RequestMapping("/registration")
 public class RegistrationController {
 
+    private final List<String> ACCEPTABLE_USER_TYPES = Collections.unmodifiableList(Arrays.asList("PARTICIPANT", "ORGANIZER"));
     private final RegistrationService registrationService;
 
     @Autowired
@@ -38,6 +42,9 @@ public class RegistrationController {
             redirectAttrs.addFlashAttribute("org.springframework.validation.BindingResult.userDto", result);
             redirectAttrs.addFlashAttribute("userDto", userDto);
             return "registration";
+        }
+        if (!ACCEPTABLE_USER_TYPES.contains(userDto.getUserType())) {
+            return "error";
         }
         registrationService.createAccount(userDto);
         return "redirect:/login";
