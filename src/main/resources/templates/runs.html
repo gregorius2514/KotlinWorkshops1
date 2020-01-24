@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<head>
+    <title>All members in maraton</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" media="all" href="css/style.css" th:href="@{css/style.css}"/>
+
+    <meta name="theme-color" content="#563d7c">
+</head>
+<body class="text-center">
+<h1>All members in maraton</h1>
+<div class="container">
+    <table>
+        <tr>
+            <td>Firstname</td>
+            <td>Lastname</td>
+            <td>Member number</td>
+        </tr>
+        <tr th:each="user: ${users}">
+            <td th:text="${user.firstName}"></td>
+            <td th:text="${user.lastName}"></td>
+            <td th:text="${user.userNumber}"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
