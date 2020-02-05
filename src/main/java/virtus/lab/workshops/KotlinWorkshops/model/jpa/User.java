@@ -1,8 +1,6 @@
 package virtus.lab.workshops.KotlinWorkshops.model.jpa;
 
 
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -17,6 +15,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -30,7 +29,6 @@ public class User {
 
     @Size(min = 5, max = 200, message = "{user.email.size}")
     @Column(length = 200, unique = true, nullable = false)
-    @Email(message = "{user.email}")
     private String email;
 
     @Size(min = 1, max = 60, message = "{user.firstName.size}")
@@ -45,11 +43,11 @@ public class User {
     @Column(length = 80, nullable = false)
     private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL })
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "user_role",
-            joinColumns = { @JoinColumn(name = "user_id") },
-            inverseJoinColumns = { @JoinColumn(name = "role_id") }
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "role_id")}
     )
     private Set<Role> roles = new HashSet<>();
 
@@ -112,7 +110,7 @@ public class User {
 
         User user = (User) o;
 
-        return id != null ? id.equals(user.id) : user.id == null;
+        return Objects.equals(id, user.id);
     }
 
     @Override

@@ -33,13 +33,18 @@
     <div>
         <label th:text="#{label.user.confirmPass}">confirm</label>
         <input type="password" th:field="*{matchingPassword}"/>
+        <p th:each="error : ${#fields.errors('matchingPassword')}"
+           th:text="${error}">Validation error</p>
     </div>
-    <div>
-        <input type="radio" th:field="*{userType}" th:value="PARTICIPANT" />
+        <label th:text="#{label.user.type}">type</label></br>
+        <input type="radio" th:field="*{userType}" th:value="${T(virtus.lab.workshops.KotlinWorkshops.model.dto.AcceptableUserTypes).PARTICIPANT}" />
         <label th:text="Participant"/>
-        <input type="radio" th:field="*{userType}" th:value="ORGANIZER" />
+        <input type="radio" th:field="*{userType}" th:value="${T(virtus.lab.workshops.KotlinWorkshops.model.dto.AcceptableUserTypes).ORGANIZER}" />
         <label th:text="Organizer"/>
+        <p th:each="error : ${#fields.errors('userType')}"
+           th:text="${error}">Validation error</p>
     </div>
+    <br>
     <button type="submit" th:text="#{label.form.submit}">submit</button>
 </form>
 

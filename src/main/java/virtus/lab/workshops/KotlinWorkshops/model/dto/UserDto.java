@@ -20,12 +20,11 @@ public class UserDto {
 
     @NotNull
     @NotEmpty
-    @Email
+    @Email(message = "{user.email}")
     private String email;
 
     @NotNull
-    @NotEmpty
-    private String userType;
+    private AcceptableUserTypes userType;
 
     public String getFirstName() {
         return firstName;
@@ -67,11 +66,11 @@ public class UserDto {
         this.email = email;
     }
 
-    public String getUserType() {
+    public AcceptableUserTypes getUserType() {
         return userType;
     }
 
-    public void setUserType(String userType) {
+    public void setUserType(AcceptableUserTypes userType) {
         this.userType = userType;
     }
 }
