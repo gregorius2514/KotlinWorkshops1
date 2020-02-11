@@ -37,9 +37,11 @@
            th:text="${error}">Validation error</p>
     </div>
         <label th:text="#{label.user.type}">type</label></br>
-        <input type="radio" th:field="*{userType}" th:value="${T(virtus.lab.workshops.KotlinWorkshops.model.dto.AcceptableUserTypes).PARTICIPANT}" />
+    <input th:field="*{userType}" th:value="${T(virtuslab.workshops.kotlin.user.dto.AcceptableUserTypes).PARTICIPANT}"
+           type="radio"/>
         <label th:text="Participant"/>
-        <input type="radio" th:field="*{userType}" th:value="${T(virtus.lab.workshops.KotlinWorkshops.model.dto.AcceptableUserTypes).ORGANIZER}" />
+    <input th:field="*{userType}" th:value="${T(virtuslab.workshops.kotlin.user.dto.AcceptableUserTypes).ORGANIZER}"
+           type="radio"/>
         <label th:text="Organizer"/>
         <p th:each="error : ${#fields.errors('userType')}"
            th:text="${error}">Validation error</p>
