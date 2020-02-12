@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" rel="stylesheet">
 
 <head>
-    <title>All runs</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" type="text/css" media="all" href="css/style.css" th:href="@{css/style.css}"/>
+    <title>All created runs</title>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+    <link href="css/style.css" media="all" rel="stylesheet" th:href="@{css/style.css}" type="text/css"/>
 
-    <meta name="theme-color" content="#563d7c">
+    <meta content="#563d7c" name="theme-color">
 </head>
 <body class="text-center">
-<h1>All runs</h1>
+<h1>All runs you've created</h1>
 <div class="container">
     <table>
         <tr>
@@ -20,12 +20,14 @@
             <td>Places left</td>
             <td></td>
             <td></td>
+            <td></td>
         </tr>
         <tr th:each="run: ${runs}">
             <td th:text="${run.place}"></td>
             <td th:text="${run.distance}"></td>
             <td th:text="${run.placesLeft}"></td>
-            <td><a class="btn btn-lg btn-secondary" th:href="@{/TODO}">See details</a></td> <!-- TODO real details page-->
+            <td><a class="btn btn-lg btn-secondary" th:href="@{/TODO}">See details</a></td><!-- TODO real details page-->
+            <td><a class="btn btn-lg btn-secondary" th:href="@{/TODO}">Edit</a></td> <!-- TODO real edit page-->
             <td>
                 <form method="POST" th:action="@{/runs/{runId}(runId=${run.id})}">
                     <button class="btn btn-lg btn-secondary" name="submit" type="submit" value="value">Participate
