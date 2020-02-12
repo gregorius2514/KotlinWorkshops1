@@ -67,8 +67,15 @@ public class RunService {
                 .orElseThrow(() -> new IllegalStateException("Couldn't create run"));
     }
 
+    public RunDetails getById(Integer id) {
+        return runRepository.findById(id)
+                .map(runRepository::save)
+                .map(this::runAsDetails)
+                .orElseThrow(() -> new IllegalStateException("Couldn't find run"));
+        }
+
     private List<RunDetails> runsAsDetails(List<Run> runs) {
-        List<RunDetails> runDetails = new ArrayList<RunDetails>();
+        List<RunDetails> runDetails = new ArrayList<>();
         for (Run run : runs) {
             runDetails.add(runAsDetails(run));
         }
