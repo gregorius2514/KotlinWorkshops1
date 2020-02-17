@@ -11,9 +11,14 @@
     <meta name="theme-color" content="#563d7c">
 </head>
 <body class="text-center">
-<h1 th:text="${run.place}"></h1>
+<h1 th:text="${run.name}"></h1>
 <div class="container">
-    <p th:text="${run.distance}"></p>
+    <p th:text="'Place: ' + ${run.place}"></p>
+    <p th:text="'Date: ' + ${run.date}"></p>
+    <p th:text="'Distance: ' + ${run.distance}"></p>
+    <p th:text="'Start time: ' + ${run.startTime}"></p>
+    <p th:text="'Places left: ' + ${run.placesLeft}"></p>
+    <p th:text="'Description: ' + ${run.description}"></p>
 </div>
 </body>
 </html>

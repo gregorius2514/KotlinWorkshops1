@@ -26,7 +26,7 @@
             <td th:text="${run.place}"></td>
             <td th:text="${run.distance}"></td>
             <td th:text="${run.placesLeft}"></td>
-            <td><a class="btn btn-lg btn-secondary" th:href="@{/TODO}">See details</a></td><!-- TODO real details page-->
+            <td><a class="btn btn-lg btn-secondary" th:href="@{/runs/{runId}(runId=${run.id})}">See details</a></td>
             <td><a class="btn btn-lg btn-secondary" th:href="@{/TODO}">Edit</a></td> <!-- TODO real edit page-->
             <td>
                 <form method="POST" th:action="@{/runs/{runId}(runId=${run.id})}">

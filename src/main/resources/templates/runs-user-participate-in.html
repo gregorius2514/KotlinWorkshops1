@@ -24,7 +24,7 @@
             <td th:text="${run.place}"></td>
             <td th:text="${run.distance}"></td>
             <td th:text="${run.placesLeft}"></td>
-            <td><a class="btn btn-lg btn-secondary" th:href="@{/TODO}">See details</a></td> <!-- TODO real details page-->
+            <td><a class="btn btn-lg btn-secondary" th:href="@{/runs/{runId}(runId=${run.id})}">See details</a></td>
         </tr>
     </table>
 </div>
