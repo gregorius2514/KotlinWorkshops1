@@ -17,9 +17,7 @@ public class CreateRunRequest {
     private Integer distance;
     private Integer capacity;
 
-    public CreateRunRequest() {
-        this("", "", "", LocalDate.now(), LocalTime.now(), 0, 0);
-    }
+    public CreateRunRequest() { }
 
     public CreateRunRequest(String place, String name, String description, LocalDate date, LocalTime startTime, Integer distance, Integer capacity) {
         Objects.requireNonNull(place);
