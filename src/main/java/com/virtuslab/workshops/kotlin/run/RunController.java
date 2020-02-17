@@ -20,7 +20,7 @@ public class RunController {
 
     @GetMapping(value = "/runs/{runId}")
     public String runDetails(@PathVariable Integer runId, Model model) {
-        model.addAttribute("run", runService.getById(runId));
+        model.addAttribute("run", runService.findById(runId));
         return "run-details";
     }
 
