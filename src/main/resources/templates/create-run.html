@@ -1,17 +1,13 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" rel="stylesheet">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout.html}">
 
 <head>
     <title>All members in maraton</title>
-    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
-    <link href="css/style.css" media="all" rel="stylesheet" th:href="@{css/style.css}" type="text/css"/>
-
-    <meta content="#563d7c" name="theme-color">
 </head>
 <body class="text-center">
-<div class="container">
+<section layout:fragment="content">
     <div class="myform form ">
         <div class="logo mb-3">
             <div class="col-md-12 text-center">
@@ -53,5 +49,6 @@
         </form>
     </div>
 </div>
+</section>
 </body>
 </html>

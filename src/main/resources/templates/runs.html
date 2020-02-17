@@ -1,30 +1,24 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout.html}">
 
 <head>
     <title>All runs</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" type="text/css" media="all" href="css/style.css" th:href="@{css/style.css}"/>
-
-    <meta name="theme-color" content="#563d7c">
 </head>
 <body class="text-center">
+<section layout:fragment="content">
 <h1>All runs</h1>
-<div class="container">
     <table>
         <tr>
-            <td>Place</td>
-            <td>Distance</td>
-            <td>Places left</td>
+            <td>Name</td>
+            <td>Date</td>
             <td></td>
             <td></td>
         </tr>
         <tr th:each="run: ${runs}">
-            <td th:text="${run.place}"></td>
-            <td th:text="${run.distance}"></td>
-            <td th:text="${run.placesLeft}"></td>
+            <td th:text="${run.name}"></td>
+            <td th:text="${run.date}"></td>
             <td><a class="btn btn-lg btn-secondary" th:href="@{/runs/{runId}(runId=${run.id})}">See details</a></td>
             <td>
                 <form method="POST" th:action="@{/runs/{runId}(runId=${run.id})}">
@@ -34,6 +28,6 @@
             </td> <!-- TODO this form probably should be available from details page-->
         </tr>
     </table>
-</div>
+</section>
 </body>
 </html>
