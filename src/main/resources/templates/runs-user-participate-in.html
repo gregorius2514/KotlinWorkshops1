@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout.html}">
 <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" rel="stylesheet">
 
@@ -11,8 +13,8 @@
     <meta content="#563d7c" name="theme-color">
 </head>
 <body class="text-center">
+<section layout:fragment="content">
 <h1>All run events you've created</h1>
-<div class="container">
     <table>
         <tr>
             <td>Place</td>
@@ -24,9 +26,9 @@
             <td th:text="${run.place}"></td>
             <td th:text="${run.distance}"></td>
             <td th:text="${run.placesLeft}"></td>
-            <td><a class="btn btn-lg btn-secondary" th:href="@{/TODO}">See details</a></td> <!-- TODO real details page-->
+            <td><a class="btn btn-lg btn-secondary" th:href="@{/runs/{runId}(runId=${run.id})}">See details</a></td>
         </tr>
     </table>
-</div>
+</section>
 </body>
 </html>

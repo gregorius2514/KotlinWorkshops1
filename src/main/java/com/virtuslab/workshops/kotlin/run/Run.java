@@ -12,6 +12,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -25,6 +27,14 @@ public class Run {
     private Integer id;
 
     private String place;
+
+    private String name;
+
+    private String description;
+
+    private LocalDate date;
+
+    private LocalTime startTime;
 
     @ManyToMany(mappedBy = "runsInWhichParticipates",
             cascade = {CascadeType.MERGE, CascadeType.PERSIST})
@@ -40,11 +50,15 @@ public class Run {
     public Run() {
     }
 
-    public Run(String place, User creator, Integer distanceInMeters, Integer participantsCapacity) {
+    public Run(String place, String name, String description, User creator, Integer distanceInMeters, Integer participantsCapacity, LocalDate date, LocalTime startTime) {
         this.place = place;
+        this.name = name;
+        this.description = description;
         this.creator = creator;
         this.distanceInMeters = distanceInMeters;
         this.participantsCapacity = participantsCapacity;
+        this.date = date;
+        this.startTime = startTime;
     }
 
     public Run addParticipant(User user) {
@@ -99,6 +113,38 @@ public class Run {
 
     public void setParticipantsCapacity(Integer participantsCapacity) {
         this.participantsCapacity = participantsCapacity;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public LocalTime getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(LocalTime startTime) {
+        this.startTime = startTime;
     }
 
     public Integer getPlacesLeft() {

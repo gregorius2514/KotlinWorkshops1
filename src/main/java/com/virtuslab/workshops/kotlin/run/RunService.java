@@ -60,15 +60,26 @@ public class RunService {
         return authService.authenticatedUser()
                 .map(user -> new Run(
                         createRunRequest.getPlace(),
+                        createRunRequest.getName(),
+                        createRunRequest.getDescription(),
                         user,
                         createRunRequest.getDistance(),
-                        createRunRequest.getCapacity()))
+                        createRunRequest.getCapacity(),
+                        createRunRequest.getDate(),
+                        createRunRequest.getStartTime()))
                 .map(runRepository::save)
                 .orElseThrow(() -> new IllegalStateException("Couldn't create run"));
     }
 
+    public RunDetails findById(Integer id) {
+        return runRepository.findById(id)
+                .map(runRepository::save)
+                .map(this::runAsDetails)
+                .orElseThrow(() -> new IllegalStateException("Couldn't find run"));
+    }
+
     private List<RunDetails> runsAsDetails(List<Run> runs) {
-        List<RunDetails> runDetails = new ArrayList<RunDetails>();
+        List<RunDetails> runDetails = new ArrayList<>();
         for (Run run : runs) {
             runDetails.add(runAsDetails(run));
         }
@@ -76,6 +87,6 @@ public class RunService {
     }
 
     private RunDetails runAsDetails(Run run) {
-        return new RunDetails(run.getId(), run.getPlace(), run.getDistanceInMeters(), run.getPlacesLeft());
+        return new RunDetails(run.getId(), run.getPlace(), run.getName(), run.getDescription(), run.getDate(), run.getStartTime(), run.getDistanceInMeters(), run.getPlacesLeft());
     }
 }
