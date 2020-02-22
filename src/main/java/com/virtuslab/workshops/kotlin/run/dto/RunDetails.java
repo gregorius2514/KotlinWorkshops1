@@ -3,6 +3,7 @@ package com.virtuslab.workshops.kotlin.run.dto;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Objects;
+import java.util.StringJoiner;
 
 public class RunDetails {
     private final Integer id;
@@ -63,5 +64,39 @@ public class RunDetails {
 
     public LocalTime getStartTime() {
         return startTime;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        RunDetails that = (RunDetails) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(place, that.place) &&
+                Objects.equals(name, that.name) &&
+                Objects.equals(description, that.description) &&
+                Objects.equals(date, that.date) &&
+                Objects.equals(startTime, that.startTime) &&
+                Objects.equals(distance, that.distance) &&
+                Objects.equals(placesLeft, that.placesLeft);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, place, name, description, date, startTime, distance, placesLeft);
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", RunDetails.class.getSimpleName() + "[", "]")
+                .add("id=" + id)
+                .add("place='" + place + "'")
+                .add("name='" + name + "'")
+                .add("description='" + description + "'")
+                .add("date=" + date)
+                .add("startTime=" + startTime)
+                .add("distance=" + distance)
+                .add("placesLeft=" + placesLeft)
+                .toString();
     }
 }

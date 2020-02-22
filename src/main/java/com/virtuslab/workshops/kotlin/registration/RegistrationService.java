@@ -4,7 +4,7 @@ import com.virtuslab.workshops.kotlin.user.RoleRepository;
 import com.virtuslab.workshops.kotlin.user.UserRepository;
 import com.virtuslab.workshops.kotlin.user.dto.UserDto;
 import com.virtuslab.workshops.kotlin.user.model.User;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -15,9 +15,9 @@ public class RegistrationService {
 
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final PasswordEncoder bCryptPasswordEncoder;
 
-    public RegistrationService(UserRepository userRepository, RoleRepository roleRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public RegistrationService(UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder bCryptPasswordEncoder) {
         Objects.requireNonNull(userRepository);
         Objects.requireNonNull(roleRepository);
         Objects.requireNonNull(bCryptPasswordEncoder);
