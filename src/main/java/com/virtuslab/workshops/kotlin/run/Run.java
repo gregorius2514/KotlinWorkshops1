@@ -15,7 +15,9 @@ import javax.persistence.Table;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
+import java.util.StringJoiner;
 
 @Entity
 @Table(name = "run")
@@ -150,5 +152,43 @@ public class Run {
 
     public Integer getPlacesLeft() {
         return getParticipantsCapacity() - this.participants.size();
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", Run.class.getSimpleName() + "[", "]")
+                .add("id=" + id)
+                .add("place='" + place + "'")
+                .add("name='" + name + "'")
+                .add("description='" + description + "'")
+                .add("date=" + date)
+                .add("startTime=" + startTime)
+                .add("participants=" + participants)
+                .add("creator=" + creator)
+                .add("distanceInMeters=" + distanceInMeters)
+                .add("participantsCapacity=" + participantsCapacity)
+                .toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Run run = (Run) o;
+        return Objects.equals(id, run.id) &&
+                Objects.equals(place, run.place) &&
+                Objects.equals(name, run.name) &&
+                Objects.equals(description, run.description) &&
+                Objects.equals(date, run.date) &&
+                Objects.equals(startTime, run.startTime) &&
+                Objects.equals(participants, run.participants) &&
+                Objects.equals(creator, run.creator) &&
+                Objects.equals(distanceInMeters, run.distanceInMeters) &&
+                Objects.equals(participantsCapacity, run.participantsCapacity);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, place, name, description, date, startTime, participants, creator, distanceInMeters, participantsCapacity);
     }
 }

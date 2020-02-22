@@ -9,9 +9,7 @@ import java.util.Set;
 
 public class UserBuilder {
 
-    public static UserBuilder INSTANCE = new UserBuilder();
-
-    private int id;
+    private Integer id;
     private String email;
     private String firstName;
     private String lastName;
@@ -20,10 +18,14 @@ public class UserBuilder {
     private Set<Run> runsInWhichParticipates = new HashSet<>();
     private Set<Run> ownedRuns = new HashSet<>();
 
+    public static UserBuilder getInstance() {
+        return new UserBuilder();
+    }
+
     private UserBuilder() {
     }
 
-    public UserBuilder id(int id) {
+    public UserBuilder id(Integer id) {
         this.id = id;
         return this;
     }

@@ -19,6 +19,7 @@ import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.StringJoiner;
 
 @Entity
 @Table(name = "users")
@@ -155,5 +156,19 @@ public class User {
     @Override
     public int hashCode() {
         return id != null ? id.hashCode() : 0;
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", User.class.getSimpleName() + "[", "]")
+                .add("id=" + id)
+                .add("email='" + email + "'")
+                .add("firstName='" + firstName + "'")
+                .add("lastName='" + lastName + "'")
+                .add("password='" + password + "'")
+                .add("roles=" + roles)
+                .add("runsInWhichParticipates=" + runsInWhichParticipates)
+                .add("ownedRuns=" + ownedRuns)
+                .toString();
     }
 }

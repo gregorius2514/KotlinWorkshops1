@@ -62,14 +62,14 @@ class RegistrationServiceTest {
                 );
 
         List<User> expectedUsers = asList(
-                UserBuilder.INSTANCE
+                UserBuilder.getInstance()
                         .id(1)
                         .firstName(user.getFirstName())
                         .lastName(user.getLastName())
                         .email(user.getEmail())
                         .password(user.getPassword())
                         .roles(new HashSet(
-                                RoleBuilder.INSTANCE
+                                RoleBuilder.getInstance()
                                         .id(1)
                                         .name(ORGANIZER.name())
                                         .buildAsList()
@@ -119,7 +119,7 @@ class RegistrationServiceTest {
 
     private void mockUserFindByName(RoleRepository roleRepository) {
         when(roleRepository.findByName(any(String.class)))
-                .thenReturn(RoleBuilder.INSTANCE
+                .thenReturn(RoleBuilder.getInstance()
                         .id(1)
                         .name("TEST_ROLE")
                         .buildAsList());

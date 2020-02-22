@@ -10,11 +10,13 @@ import java.util.Set;
 
 public class RoleBuilder {
 
-    public static RoleBuilder INSTANCE = new RoleBuilder();
-
     private Integer id;
     private String name;
     private Set<User> users = new HashSet<>();
+
+    public static RoleBuilder getInstance() {
+        return new RoleBuilder();
+    }
 
     private RoleBuilder() {
     }
