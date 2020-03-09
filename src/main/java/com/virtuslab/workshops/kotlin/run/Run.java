@@ -26,6 +26,7 @@ public class Run {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "runsSequenceGenerator")
     private Integer id;
 
+    // FIXME [szymczuch] Add javax.persistence annotations
     private String place;
 
     private String name;

@@ -73,7 +73,6 @@ public class RunService {
 
     public RunDetails findById(Integer id) {
         return runRepository.findById(id)
-                .map(runRepository::save)
                 .map(this::runAsDetails)
                 .orElseThrow(() -> new IllegalStateException("Couldn't find run"));
     }
