@@ -38,8 +38,8 @@ class UserServiceTest {
     @Test
     public void shouldReturnOneUserByEmail() {
         // given
-        String expectedUserEmail = "admin@test.pl";
-        User expectedUser = UserBuilder.INSTANCE
+        String expectedUserEmail = "admin@example.com";
+        User expectedUser = UserBuilder.getInstance()
                 .email(expectedUserEmail)
                 .firstName("Jan")
                 .lastName("Kowalski")
@@ -53,11 +53,11 @@ class UserServiceTest {
     }
 
     private User createAdminUser() {
-        return UserBuilder.INSTANCE
-                .id(1)
+        return UserBuilder.getInstance()
+                .id(null)
                 .firstName("Jan")
                 .lastName("Kowalski")
-                .email("admin@test.pl")
+                .email("admin@example.com")
                 .build();
     }
 
@@ -70,7 +70,7 @@ class UserServiceTest {
 
     private void mockRoleAdminWithAttachedAdminUser(RoleRepository roleRepository, User adminUser) {
         when(roleRepository.findByName("ADMIN"))
-                .thenReturn(RoleBuilder.INSTANCE
+                .thenReturn(RoleBuilder.getInstance()
                         .id(100)
                         .name("ADMIN")
                         .users(new HashSet(Arrays.asList(adminUser)))
@@ -79,7 +79,7 @@ class UserServiceTest {
 
     private void mockRoleFindByName(int roleId, String participant, RoleRepository roleRepository) {
         when(roleRepository.findByName(participant))
-                .thenReturn(RoleBuilder.INSTANCE
+                .thenReturn(RoleBuilder.getInstance()
                         .id(roleId)
                         .name(participant)
                         .buildAsList());

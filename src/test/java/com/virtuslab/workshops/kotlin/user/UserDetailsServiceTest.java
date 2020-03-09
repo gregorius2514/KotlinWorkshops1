@@ -39,7 +39,7 @@ class UserDetailsServiceTest {
     public void shouldLoadUserByUsername() {
         // given
         String expectedUserEmail = "admin@test.com";
-        User user = UserBuilder.INSTANCE
+        User user = UserBuilder.getInstance()
                 .id(1)
                 .email(expectedUserEmail)
                 .password("test1234")
@@ -57,23 +57,23 @@ class UserDetailsServiceTest {
 
     private void createDummyTestData(User expectedUser) {
         List<User> testUsers = Arrays.asList(
-                UserBuilder.INSTANCE
+                UserBuilder.getInstance()
                         .email("test1@test.com")
                         .password("test1234")
                         .build(),
-                UserBuilder.INSTANCE
+                UserBuilder.getInstance()
                         .email("test2@test.com")
                         .password("test1234")
                         .build(),
-                UserBuilder.INSTANCE
+                UserBuilder.getInstance()
                         .email("test3@test.com")
                         .password("test1234")
                         .build(),
-                UserBuilder.INSTANCE
+                UserBuilder.getInstance()
                         .email("test4@test.com")
                         .password("test1234")
                         .build(),
-                UserBuilder.INSTANCE
+                UserBuilder.getInstance()
                         .email("test5@test.com")
                         .password("test1234")
                         .build()
