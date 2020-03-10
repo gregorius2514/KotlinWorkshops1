@@ -30,7 +30,7 @@ import static org.mockito.Mockito.when;
 class RunServiceTest {
 
     private RunService runService;
-    private List<Run> fakeRunsDatabase = new ArrayList<>();
+    private List<Run> inMemoryRunsDatabase = new ArrayList<>();
     private RunRepository runRepository;
     private AuthenticatedUserService authService;
     private Clock fixedClock;
@@ -55,13 +55,13 @@ class RunServiceTest {
                 .thenReturn(Optional.of(loggedInUser));
 
         when(runRepository.findAll())
-                .thenReturn(fakeRunsDatabase);
+                .thenReturn(inMemoryRunsDatabase);
 
         when(runRepository.findByCreator(any(User.class)))
                 .thenAnswer(answer -> {
                     User queryUser = answer.getArgument(0);
 
-                    return fakeRunsDatabase
+                    return inMemoryRunsDatabase
                             .stream()
                             .filter(user -> user.getCreator().equals(queryUser))
                             .collect(Collectors.toList());
@@ -71,7 +71,7 @@ class RunServiceTest {
                 .thenAnswer(answer -> {
                     User queryUser = answer.getArgument(0);
 
-                    return fakeRunsDatabase
+                    return inMemoryRunsDatabase
                             .stream()
                             .filter(run -> run.getParticipants().contains(queryUser))
                             .collect(Collectors.toList());
@@ -81,7 +81,7 @@ class RunServiceTest {
                 .thenAnswer(answer -> {
                     Integer queryRunId = answer.getArgument(0);
 
-                    return fakeRunsDatabase
+                    return inMemoryRunsDatabase
                             .stream()
                             .filter(run -> run.getId().equals(queryRunId))
                             .findFirst();
@@ -90,7 +90,7 @@ class RunServiceTest {
         when(runRepository.save(any(Run.class)))
                 .thenAnswer(anwer -> {
                     Run run = anwer.getArgument(0);
-                    fakeRunsDatabase.add(run);
+                    inMemoryRunsDatabase.add(run);
 
                     return run;
                 });
@@ -98,7 +98,7 @@ class RunServiceTest {
 
     @AfterEach
     private void after() {
-        fakeRunsDatabase.clear();
+        inMemoryRunsDatabase.clear();
     }
 
     @Test
