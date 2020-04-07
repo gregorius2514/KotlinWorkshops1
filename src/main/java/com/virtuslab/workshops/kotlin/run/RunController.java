@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.Objects;
 
 @Controller
@@ -25,9 +24,14 @@ public class RunController {
     }
 
     @PostMapping(value = "/runs/{runId}")
-    public String participateInRun(@PathVariable Integer runId, HttpServletRequest request) {
+    public String participateInRun(@PathVariable Integer runId) {
         runService.participateInRun(runId);
         return "redirect:/";
     }
 
+    @GetMapping(value = "/runs/delete/{runId}")
+    public String removeRun(@PathVariable Integer runId) {
+        runService.deleteById(runId);
+        return "redirect:/created-runs";
+    }
 }

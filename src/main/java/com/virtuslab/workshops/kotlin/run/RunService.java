@@ -88,4 +88,8 @@ public class RunService {
     private RunDetails runAsDetails(Run run) {
         return new RunDetails(run.getId(), run.getPlace(), run.getName(), run.getDescription(), run.getDate(), run.getStartTime(), run.getDistanceInMeters(), run.getPlacesLeft());
     }
+
+    public void deleteById(Integer runId) {
+        runRepository.deleteById(runId);
+    }
 }
