@@ -40,7 +40,7 @@ public class Run {
     private LocalTime startTime;
 
     @ManyToMany(mappedBy = "runsInWhichParticipates",
-            cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+            cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE})
     private Set<User> participants = new HashSet<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
