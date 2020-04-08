@@ -3,6 +3,7 @@ package com.virtuslab.workshops.kotlin.run;
 import com.virtuslab.workshops.kotlin.run.dto.CreateRunRequest;
 import com.virtuslab.workshops.kotlin.run.dto.RunDetails;
 import com.virtuslab.workshops.kotlin.security.AuthenticatedUserService;
+import com.virtuslab.workshops.kotlin.user.dto.SkinnyUserDto;
 import com.virtuslab.workshops.kotlin.user.model.User;
 import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 public class RunService {
@@ -56,6 +58,7 @@ public class RunService {
                 .orElseThrow(() -> new IllegalStateException("Couldn't participate in this run"));
     }
 
+    //    TODO [hbysiak] we shouldn't return entity
     public Run createRun(CreateRunRequest createRunRequest) {
         return authService.authenticatedUser()
                 .map(user -> new Run(
@@ -74,6 +77,20 @@ public class RunService {
     public RunDetails findById(Integer id) {
         return runRepository.findById(id)
                 .map(this::runAsDetails)
+                .orElseThrow(() -> new IllegalStateException("Couldn't find run"));
+    }
+
+    public Pair<String, List<SkinnyUserDto>> getRunNameAndParticipants(Integer id) {
+        return runRepository.findById(id)
+                .map(run -> Pair.of(
+                        run.getName(),
+                        run.getParticipants().stream()
+                                .map(user -> new SkinnyUserDto(
+                                        user.getFirstName(),
+                                        user.getLastName(),
+                                        user.getEmail()
+                                ))
+                                .collect(Collectors.toList())))
                 .orElseThrow(() -> new IllegalStateException("Couldn't find run"));
     }
 

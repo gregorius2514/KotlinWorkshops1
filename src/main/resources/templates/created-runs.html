@@ -23,6 +23,7 @@
             <td th:text="${run.distance}"></td>
             <td th:text="${run.placesLeft}"></td>
             <td><a class="btn btn-secondary" th:href="@{/runs/{runId}(runId=${run.id})}">See details</a></td>
+            <td><a class="btn btn-secondary" th:href="@{/run/{runId}/participants(runId=${run.id})}">List of participants</a></td>
             <td><a class="btn btn-danger" th:href="@{/runs/delete/{runId}(runId=${run.id})}">Delete</a></td>
         </tr>
     </table>
