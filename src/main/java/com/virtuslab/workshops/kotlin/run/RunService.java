@@ -11,7 +11,8 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 @Service
 public class RunService {
@@ -59,7 +60,7 @@ public class RunService {
     }
 
     //    TODO [hbysiak] we shouldn't return entity
-    public Run createRun(CreateRunRequest createRunRequest) {
+    public RunDetails createRun(CreateRunRequest createRunRequest) {
         return authService.authenticatedUser()
                 .map(user -> new Run(
                         createRunRequest.getPlace(),
@@ -71,6 +72,7 @@ public class RunService {
                         createRunRequest.getDate(),
                         createRunRequest.getStartTime()))
                 .map(runRepository::save)
+                .map(this::runAsDetails)
                 .orElseThrow(() -> new IllegalStateException("Couldn't create run"));
     }
 
@@ -90,7 +92,7 @@ public class RunService {
                                         user.getLastName(),
                                         user.getEmail()
                                 ))
-                                .collect(Collectors.toList())))
+                                .collect(toList())))
                 .orElseThrow(() -> new IllegalStateException("Couldn't find run"));
     }
 

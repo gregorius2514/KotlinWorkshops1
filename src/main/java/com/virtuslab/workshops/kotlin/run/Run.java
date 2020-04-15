@@ -2,11 +2,8 @@ package com.virtuslab.workshops.kotlin.run;
 
 import com.virtuslab.workshops.kotlin.user.model.User;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -19,13 +16,19 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.StringJoiner;
 
+import static javax.persistence.CascadeType.MERGE;
+import static javax.persistence.CascadeType.PERSIST;
+import static javax.persistence.CascadeType.REMOVE;
+import static javax.persistence.FetchType.LAZY;
+import static javax.persistence.GenerationType.SEQUENCE;
+
 @Entity
 @Table(name = "run")
 @SequenceGenerator(name = "runsSequenceGenerator", sequenceName = "run_seq", allocationSize = 1)
 public class Run {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "runsSequenceGenerator")
+    @GeneratedValue(strategy = SEQUENCE, generator = "runsSequenceGenerator")
     private Integer id;
 
     // FIXME [szymczuch] Add javax.persistence annotations
@@ -40,10 +43,10 @@ public class Run {
     private LocalTime startTime;
 
     @ManyToMany(mappedBy = "runsInWhichParticipates",
-            cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE})
+            cascade = {MERGE, PERSIST, REMOVE})
     private Set<User> participants = new HashSet<>();
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = LAZY)
     private User creator;
 
     private Integer distanceInMeters;
