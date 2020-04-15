@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout.html}">
+
+<head>
+    <title>Run participants</title>
+</head>
+<body class="text-center">
+<section layout:fragment="content">
+<h1 th:text="${runName}"></h1>
+    <table>
+        <tr>
+            <td>First name</td>
+            <td>Last name</td>
+            <td>E-mail</td>
+        </tr>
+        <tr th:each="participant: ${participants}">
+            <td th:text="${participant.firstName}"></td>
+            <td th:text="${participant.lastName}"></td>
+            <td th:text="${participant.email}"></td>
+        </tr>
+    </table>
+</section>
+</body>
+</html>

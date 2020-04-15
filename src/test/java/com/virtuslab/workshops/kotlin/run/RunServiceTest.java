@@ -91,7 +91,7 @@ class RunServiceTest {
                 .thenAnswer(anwer -> {
                     Run run = anwer.getArgument(0);
                     inMemoryRunsDatabase.add(run);
-
+                    if (run.getId() == null) run.setId(1);
                     return run;
                 });
     }
@@ -230,17 +230,8 @@ class RunServiceTest {
     @Test
     public void createRun() {
         // given
-        Run expectedRun2 = RunBuilder.getInstance()
-                .place("random")
-                .name("test run")
-                .description("test description")
-                .date(LocalDate.now(fixedClock))
-                .startTime(LocalTime.now(fixedClock))
-                .distanceInMeters(999)
-                .participantsCapacity(999)
-                .participants(new HashSet<>())
-                .creator(loggedInUser)
-                .build();
+        RunDetails expectedRun2 =
+                new RunDetails(1, "random", "test run", "test description", LocalDate.now(fixedClock), LocalTime.now(fixedClock), 999, 999);
 
         CreateRunRequest createRunRequest = new CreateRunRequest(
                 "random",
@@ -253,7 +244,7 @@ class RunServiceTest {
         );
 
         // when
-        Run actualRun = runService.createRun(createRunRequest);
+        RunDetails actualRun = runService.createRun(createRunRequest);
 
         // then
         assertEquals(expectedRun2, actualRun);

@@ -4,7 +4,7 @@
       layout:decorate="~{layout.html}">
 
 <head>
-    <title>All created runs</title>
+    <title>All runs you've created</title>
 </head>
 <body class="text-center">
 <section layout:fragment="content">
@@ -22,14 +22,9 @@
             <td th:text="${run.place}"></td>
             <td th:text="${run.distance}"></td>
             <td th:text="${run.placesLeft}"></td>
-            <td><a class="btn btn-lg btn-secondary" th:href="@{/runs/{runId}(runId=${run.id})}">See details</a></td>
-            <td><a class="btn btn-lg btn-secondary" th:href="@{/TODO}">Edit</a></td> <!-- TODO real edit page-->
-            <td>
-                <form method="POST" th:action="@{/runs/{runId}(runId=${run.id})}">
-                    <button class="btn btn-lg btn-secondary" name="submit" type="submit" value="value">Participate
-                    </button>
-                </form>
-            </td> <!-- TODO this form probably should be available from details page-->
+            <td><a class="btn btn-secondary" th:href="@{/runs/{runId}(runId=${run.id})}">See details</a></td>
+            <td><a class="btn btn-secondary" th:href="@{/run/{runId}/participants(runId=${run.id})}">List of participants</a></td>
+            <td><a class="btn btn-danger" th:href="@{/runs/delete/{runId}(runId=${run.id})}">Delete</a></td>
         </tr>
     </table>
 </section>
