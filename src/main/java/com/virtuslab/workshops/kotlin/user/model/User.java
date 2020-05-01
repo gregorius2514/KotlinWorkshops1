@@ -1,7 +1,10 @@
 package com.virtuslab.workshops.kotlin.user.model;
 
 import com.virtuslab.workshops.kotlin.run.Run;
-
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
+import java.util.StringJoiner;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,10 +19,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
-import java.util.StringJoiner;
 
 @Entity
 @Table(name = "users")
@@ -69,6 +68,14 @@ public class User {
             mappedBy = "creator",
             cascade = CascadeType.ALL)
     private Set<Run> ownedRuns = new HashSet<>();
+
+    public User() {
+    }
+
+    public User(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 
     public User participateInRun(Run run) {
         runsInWhichParticipates.add(run);
@@ -161,11 +168,11 @@ public class User {
     @Override
     public String toString() {
         return new StringJoiner(", ", User.class.getSimpleName() + "[", "]")
-                .add("id=" + id)
+                .add("id=" + "[secret]")
                 .add("email='" + email + "'")
                 .add("firstName='" + firstName + "'")
                 .add("lastName='" + lastName + "'")
-                .add("password='" + password + "'")
+                .add("password='" + "[secret]" + "'")
                 .add("roles=" + roles)
                 .add("runsInWhichParticipates=" + runsInWhichParticipates)
                 .add("ownedRuns=" + ownedRuns)

@@ -1,5 +1,6 @@
 package com.virtuslab.workshops.kotlin.run.dto;
 
+import com.virtuslab.workshops.kotlin.user.model.User;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Objects;
@@ -14,8 +15,9 @@ public class RunDetails {
     private final LocalTime startTime;
     private final Integer distance;
     private final Integer placesLeft;
+    private final User winner;
 
-    public RunDetails(Integer id, String place, String name, String description, LocalDate date, LocalTime startTime, Integer distance, Integer placesLeft) {
+    public RunDetails(Integer id, String place, String name, String description, LocalDate date, LocalTime startTime, Integer distance, Integer placesLeft, User winner) {
         Objects.requireNonNull(id);
         Objects.requireNonNull(place);
         Objects.requireNonNull(name);
@@ -32,7 +34,13 @@ public class RunDetails {
         this.startTime = startTime;
         this.distance = distance;
         this.placesLeft = placesLeft;
+        this.winner = winner;
     }
+
+    public RunDetails(Integer id, String place, String name, String description, LocalDate date, LocalTime startTime, Integer distance, Integer placesLeft) {
+        this(id, place, name, description, date, startTime, distance, placesLeft, null);
+    }
+
 
     public Integer getId() {
         return id;
@@ -66,6 +74,10 @@ public class RunDetails {
         return startTime;
     }
 
+    public User getWinner() {
+        return winner;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -78,12 +90,13 @@ public class RunDetails {
                 Objects.equals(date, that.date) &&
                 Objects.equals(startTime, that.startTime) &&
                 Objects.equals(distance, that.distance) &&
-                Objects.equals(placesLeft, that.placesLeft);
+                Objects.equals(placesLeft, that.placesLeft) &&
+                Objects.equals(winner, that.winner);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, place, name, description, date, startTime, distance, placesLeft);
+        return Objects.hash(id, place, name, description, date, startTime, distance, placesLeft, winner);
     }
 
     @Override
@@ -97,6 +110,7 @@ public class RunDetails {
                 .add("startTime=" + startTime)
                 .add("distance=" + distance)
                 .add("placesLeft=" + placesLeft)
+                .add("winner=" + winner)
                 .toString();
     }
 }

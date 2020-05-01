@@ -4,18 +4,32 @@
       layout:decorate="~{layout.html}">
 
 <head>
-    <title>Run details</title>
+    <title>Add run winner</title>
 </head>
 <body class="text-center">
+
 <section layout:fragment="content">
     <h1 th:text="${run.name}"></h1>
+
+    <p th:text="'Id: ' + ${run.id}"></p>
     <p th:text="'Place: ' + ${run.place}"></p>
     <p th:text="'Date: ' + ${run.date}"></p>
     <p th:text="'Distance: ' + ${run.distance}"></p>
     <p th:text="'Start time: ' + ${run.startTime}"></p>
     <p th:text="'Places left: ' + ${run.placesLeft}"></p>
     <p th:text="'Description: ' + ${run.description}"></p>
-    <p th:text="'Winner: ' + ${run.winner?.firstName} + ' ' + ${run.winner?.lastName}"></p>
+
+    <form method="POST" th:action="@{/runs/add/winner}" th:object="${winnerDto}">
+        <input type="hidden" name="runId" th:value="${run.id}"/>
+        <span th:text="'Winner: '"></span>
+        <select th:field="*{winnerId}">
+            <option th:each="i : ${users}" th:value="${i.id}" th:text="${i.firstName}"></option>
+        </select>
+
+        <div class="col-md-12 text-center ">
+            <input class="btn btn-lg btn-primary" type="submit" value="Create"/>
+        </div>
+    </form>
 </section>
 </body>
 </html>

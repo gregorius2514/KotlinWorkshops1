@@ -5,10 +5,7 @@ import com.virtuslab.workshops.kotlin.run.dto.CreateRunRequest;
 import com.virtuslab.workshops.kotlin.run.dto.RunDetails;
 import com.virtuslab.workshops.kotlin.security.AuthenticatedUserService;
 import com.virtuslab.workshops.kotlin.user.model.User;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
+import com.virtuslab.workshops.kotlin.winner.WinnerService;
 import java.time.Clock;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -21,6 +18,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
@@ -33,6 +33,7 @@ class RunServiceTest {
     private List<Run> inMemoryRunsDatabase = new ArrayList<>();
     private RunRepository runRepository;
     private AuthenticatedUserService authService;
+    private WinnerService winnerService;
     private Clock fixedClock;
     private User loggedInUser;
 
@@ -42,7 +43,8 @@ class RunServiceTest {
 
         runRepository = mock(RunRepository.class);
         authService = mock(AuthenticatedUserService.class);
-        runService = new RunService(runRepository, authService);
+        winnerService = mock(WinnerService.class);
+        runService = new RunService(runRepository, winnerService, authService, fixedClock);
 
         loggedInUser = UserBuilder.getInstance()
                 .id(1)
