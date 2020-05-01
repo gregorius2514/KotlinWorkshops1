@@ -1,10 +1,10 @@
 package com.virtuslab.workshops.kotlin.user;
 
 import com.virtuslab.workshops.kotlin.user.model.User;
-import org.springframework.stereotype.Service;
-
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
@@ -21,5 +21,9 @@ public class UserService {
 
     public Optional<User> getByEmail(String email) {
         return userRepository.findByEmail(email);
+    }
+
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
     }
 }

@@ -5,25 +5,37 @@ import com.virtuslab.workshops.kotlin.run.dto.RunDetails;
 import com.virtuslab.workshops.kotlin.security.AuthenticatedUserService;
 import com.virtuslab.workshops.kotlin.user.dto.SkinnyUserDto;
 import com.virtuslab.workshops.kotlin.user.model.User;
-import org.springframework.data.util.Pair;
-import org.springframework.stereotype.Service;
-
+import com.virtuslab.workshops.kotlin.winner.WinnerService;
+import java.time.Clock;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import org.springframework.data.util.Pair;
+import org.springframework.stereotype.Service;
 
 import static java.util.stream.Collectors.toList;
 
 @Service
 public class RunService {
-    private final RunRepository runRepository;
-    private final AuthenticatedUserService authService;
+    private static final String EMPTY_FIRST_NAME = "";
+    private static final String EMPTY_LAST_NAME = "";
 
-    public RunService(RunRepository runRepository, AuthenticatedUserService authService) {
+    private final RunRepository runRepository;
+    private final WinnerService winnerService;
+    private final AuthenticatedUserService authService;
+    private final Clock clock;
+
+    public RunService(RunRepository runRepository, WinnerService winnerService, AuthenticatedUserService authService, Clock clock) {
         Objects.requireNonNull(runRepository);
+        Objects.requireNonNull(winnerService);
         Objects.requireNonNull(authService);
+        Objects.requireNonNull(clock);
+
         this.runRepository = runRepository;
+        this.winnerService = winnerService;
         this.authService = authService;
+        this.clock = clock;
     }
 
     public List<RunDetails> allRuns() {
@@ -96,6 +108,21 @@ public class RunService {
                 .orElseThrow(() -> new IllegalStateException("Couldn't find run"));
     }
 
+    public void deleteById(Integer runId) {
+        runRepository.deleteById(runId);
+    }
+
+    public List<RunDetails> findFinishedRuns() {
+        LocalDate today = LocalDate.now(clock);
+        return runRepository
+                .findByDateBefore(today)
+                .stream()
+                .map(run ->
+                        runAsDetails(run)
+                )
+                .collect(toList());
+    }
+
     private List<RunDetails> runsAsDetails(List<Run> runs) {
         List<RunDetails> runDetails = new ArrayList<>();
         for (Run run : runs) {
@@ -105,10 +132,7 @@ public class RunService {
     }
 
     private RunDetails runAsDetails(Run run) {
-        return new RunDetails(run.getId(), run.getPlace(), run.getName(), run.getDescription(), run.getDate(), run.getStartTime(), run.getDistanceInMeters(), run.getPlacesLeft());
-    }
-
-    public void deleteById(Integer runId) {
-        runRepository.deleteById(runId);
+        User winner = winnerService.findWinnerByRunId(run.getId()).orElse(null);
+        return new RunDetails(run.getId(), run.getPlace(), run.getName(), run.getDescription(), run.getDate(), run.getStartTime(), run.getDistanceInMeters(), run.getPlacesLeft(), winner);
     }
 }

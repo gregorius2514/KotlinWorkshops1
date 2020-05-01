@@ -16,3 +16,5 @@ VALUES (roles_seq.nextval, 'ORGANIZER');
 
 INSERT INTO user_role (user_id, role_id)
 VALUES ((SELECT id from users where email = 'admin@example.com'), (SELECT id from roles where name = 'ADMIN'));
+
+Insert into RUN VALUES(0, '2020-01-01','test description', 1, 'test run', 10, 10, '10:00:00', 1)
