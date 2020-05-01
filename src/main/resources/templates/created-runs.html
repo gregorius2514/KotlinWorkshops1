@@ -9,24 +9,26 @@
 <body class="text-center">
 <section layout:fragment="content">
     <h1>All runs you've created</h1>
-    <table>
-        <tr>
-            <td>Place</td>
-            <td>Distance</td>
-            <td>Places left</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr th:each="run: ${runs}">
-            <td th:text="${run.place}"></td>
-            <td th:text="${run.distance}"></td>
-            <td th:text="${run.placesLeft}"></td>
-            <td><a class="btn btn-secondary" th:href="@{/runs/{runId}(runId=${run.id})}">See details</a></td>
-            <td><a class="btn btn-secondary" th:href="@{/run/{runId}/participants(runId=${run.id})}">List of participants</a></td>
-            <td><a class="btn btn-danger" th:href="@{/runs/delete/{runId}(runId=${run.id})}">Delete</a></td>
-        </tr>
-    </table>
+    <div class="fixed-forms">
+        <table>
+            <tr>
+                <td>Place</td>
+                <td>Distance</td>
+                <td>Places left</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr th:each="run: ${runs}">
+                <td th:text="${run.place}"></td>
+                <td th:text="${run.distance}"></td>
+                <td th:text="${run.placesLeft}"></td>
+                <td><a class="btn btn-secondary" th:href="@{/runs/{runId}(runId=${run.id})}">See details</a></td>
+                <td><a class="btn btn-secondary" th:href="@{/run/{runId}/participants(runId=${run.id})}">List of participants</a></td>
+                <td><a class="btn btn-danger" th:href="@{/runs/delete/{runId}(runId=${run.id})}">Delete</a></td>
+            </tr>
+        </table>
+    </div>
 </section>
 </body>
 </html>
