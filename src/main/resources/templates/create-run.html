@@ -14,41 +14,75 @@
                 <h1>Create run</h1>
             </div>
         </div>
-        <form method="post" th:action="@{/runs}" th:object="${createRunRequest}">
-            <div>
-                <label th:text="#{label.run.name}">name</label>
-                <input th:field="*{name}"/>
-            </div>
-            <div>
-                <label th:text="#{label.run.place}">place</label>
-                <input th:field="*{place}"/>
-            </div>
-            <div>
-                <label th:text="#{label.run.distance}">distance</label>
-                <input th:field="*{distance}"/>
-            </div>
-            <div>
-                <label th:text="#{label.run.date}">date</label>
-                <input type="date" th:value="*{date}" th:field="*{date}" />
-            </div>
-            <div>
-                <label th:text="#{label.run.startTime}">startTime</label>
-                <input type="time" th:value="*{date}" th:field="*{startTime}" />
-            </div>
-            <div>
-                <label th:text="#{label.run.capacity}">capacity</label>
-                <input th:field="*{capacity}"/>
-            </div>
-            <div>
-                <label th:text="#{label.run.description}">description</label>
-                <textarea th:field="*{description}"/>
-            </div>
-            <div class="col-md-12 text-center ">
-                <input class="btn btn-lg btn-primary" type="submit" value="Create"/>
-            </div>
-        </form>
+        <div class="fixed-forms">
+            <form method="post" th:action="@{/runs}" th:object="${createRunRequest}">
+                <table class="center-table">
+                    <tr>
+                        <td>
+                            <label th:text="#{label.run.name}">name</label>
+                        </td>
+                        <td>
+                            <input th:field="*{name}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label th:text="#{label.run.place}">place</label>
+                        </td>
+                        <td>
+                            <input th:field="*{place}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label th:text="#{label.run.distance}">distance</label>
+                        </td>
+                        <td>
+                            <input th:field="*{distance}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label th:text="#{label.run.date}">date</label>
+                        </td>
+                        <td>
+                            <input type="date" th:value="*{date}" th:field="*{date}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label th:text="#{label.run.startTime}">startTime</label>
+                        </td>
+                        <td>
+                            <input type="time" th:value="*{date}" th:field="*{startTime}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label th:text="#{label.run.capacity}">capacity</label>
+                        </td>
+                        <td>
+                            <input th:field="*{capacity}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label th:text="#{label.run.description}">description</label>
+                        </td>
+                        <td>
+                            <textarea th:field="*{description}"/>
+                        </td>
+                    </tr>
+                    <tr class="col-md-12 text-center ">
+                        <td colspan="2">
+                            <input class="btn btn-lg btn-primary" type="submit" value="Create"/>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
     </div>
-</div>
+    </div>
 </section>
 </body>
 </html>

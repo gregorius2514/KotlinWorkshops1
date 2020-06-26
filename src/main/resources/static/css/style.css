@@ -12,3 +12,20 @@
           font-size: 3.5rem;
         }
       }
+
+.in-one-column{
+    margin-top: 5%;
+}
+
+.fixed-page-height {
+    height: 1000px;
+}
+
+.center-table {
+    margin: auto;
+    width: 40% !important;
+}
+
+.fixed-forms {
+    margin-top: 20%;
+}

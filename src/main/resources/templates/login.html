@@ -6,11 +6,11 @@
 <head>
     <title>Login page</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" type="text/css" media="all" href="css/style.css" th:href="@{css/style.css}"/>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{css/style.css}"/>
 
     <meta name="theme-color" content="#563d7c">
 </head>
-<body class="text-center">
+<body class="text-center fixed-page-height">
 <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
     <header class="masthead mb-auto">
         <div class="inner">
@@ -47,10 +47,12 @@
                 </div>
             </div>
         </div>
-        <p class="lead">
-            If you don't have an account yet
-            <a class="btn btn-secondary" th:href="@{/registration}">Sign up</a>
-        </p>
+        <div class="in-one-column">
+            <p class="lead">
+                If you don't have an account yet
+            </p>
+            <a class="btn btn-success" th:href="@{/registration}">Sign up</a>
+        </div>
     </main>
 
     <footer class="mastfoot mt-auto">

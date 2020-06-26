@@ -8,19 +8,21 @@
 </head>
 <body class="text-center">
 <section layout:fragment="content">
-<h1 th:text="${runName}"></h1>
-    <table>
-        <tr>
-            <td>First name</td>
-            <td>Last name</td>
-            <td>E-mail</td>
-        </tr>
-        <tr th:each="participant: ${participants}">
-            <td th:text="${participant.firstName}"></td>
-            <td th:text="${participant.lastName}"></td>
-            <td th:text="${participant.email}"></td>
-        </tr>
-    </table>
+    <div class="fixed-forms">
+        <h1 th:text="${runName}"></h1>
+        <table>
+            <tr>
+                <td>First name</td>
+                <td>Last name</td>
+                <td>E-mail</td>
+            </tr>
+            <tr th:each="participant: ${participants}">
+                <td th:text="${participant.firstName}"></td>
+                <td th:text="${participant.lastName}"></td>
+                <td th:text="${participant.email}"></td>
+            </tr>
+        </table>
+    </div>
 </section>
 </body>
 </html>

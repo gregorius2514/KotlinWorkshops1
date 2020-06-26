@@ -8,24 +8,28 @@
 </head>
 <body class="text-center">
 <section layout:fragment="content">
-    <h1>All runs</h1>
-    <table>
-        <tr>
-            <td>Name</td>
-            <td>Date</td>
-        </tr>
-        <tr th:each="run: ${runs}">
-            <td th:text="${run.name}"></td>
-            <td th:text="${run.date}"></td>
-            <td><a class="btn btn-secondary" th:href="@{/runs/{runId}(runId=${run.id})}">See details</a></td>
-            <td>
-                <form method="POST" th:action="@{/runs/{runId}(runId=${run.id})}">
-                    <button class="btn btn-secondary" name="submit" type="submit" value="value">Participate</button>
-                </form>
-            </td>
-            <td><a class="btn btn-secondary" th:href="@{/runs/add/winner/{runId}(runId=${run.id})}">Add winner</a></td>
-        </tr>
-    </table>
+<h1>All runs</h1>
+    <div class="fixed-forms">
+        <table>
+            <tr>
+                <td>Name</td>
+                <td>Date</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr th:each="run: ${runs}">
+                <td th:text="${run.name}"></td>
+                <td th:text="${run.date}"></td>
+                <td><a class="btn btn-secondary" th:href="@{/runs/{runId}(runId=${run.id})}">See details</a></td>
+                <td>
+                    <form method="POST" th:action="@{/runs/{runId}(runId=${run.id})}">
+                        <button class="btn btn-secondary" name="submit" type="submit" value="value">Participate
+                        </button>
+                    </form>
+                </td> <!-- TODO this form probably should be available from details page-->
+            </tr>
+        </table>
+    </div>
 </section>
 </body>
 </html>

@@ -8,14 +8,15 @@
 </head>
 <body class="text-center">
 <section layout:fragment="content">
-    <h1 th:text="${run.name}"></h1>
-    <p th:text="'Place: ' + ${run.place}"></p>
-    <p th:text="'Date: ' + ${run.date}"></p>
-    <p th:text="'Distance: ' + ${run.distance}"></p>
-    <p th:text="'Start time: ' + ${run.startTime}"></p>
-    <p th:text="'Places left: ' + ${run.placesLeft}"></p>
-    <p th:text="'Description: ' + ${run.description}"></p>
-    <p th:text="'Winner: ' + ${run.winner?.firstName} + ' ' + ${run.winner?.lastName}"></p>
+    <div class="fixed-forms">
+        <h1 th:text="${run.name}"></h1>
+        <p th:text="'Place: ' + ${run.place}"></p>
+        <p th:text="'Date: ' + ${run.date}"></p>
+        <p th:text="'Distance: ' + ${run.distance}"></p>
+        <p th:text="'Start time: ' + ${run.startTime}"></p>
+        <p th:text="'Places left: ' + ${run.placesLeft}"></p>
+        <p th:text="'Description: ' + ${run.description}"></p>
+    </div>
 </section>
 </body>
 </html>

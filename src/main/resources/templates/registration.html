@@ -1,55 +1,83 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
 <head>
     <title>Registration page</title>
-</head>
-<body>
-<h1 th:text="#{label.form.title}">form</h1>
-<form action="#" th:action="@{/registration}" th:object="${userDto}" method="POST" enctype="utf8">
-    <div>
-        <label th:text="#{label.user.firstName}">first</label>
-        <input th:field="*{firstName}"/>
-        <p th:each="error: ${#fields.errors('firstName')}"
-           th:text="${error}">Validation error</p>
-    </div>
-    <div>
-        <label th:text="#{label.user.lastName}">last</label>
-        <input th:field="*{lastName}"/>
-        <p th:each="error : ${#fields.errors('lastName')}"
-           th:text="${error}">Validation error</p>
-    </div>
-    <div>
-        <label th:text="#{label.user.email}">email</label>
-        <input type="email" th:field="*{email}"/>
-        <p th:each="error : ${#fields.errors('email')}"
-           th:text="${error}">Validation error</p>
-    </div>
-    <div>
-        <label th:text="#{label.user.password}">password</label>
-        <input type="password" th:field="*{password}"/>
-        <p th:each="error : ${#fields.errors('password')}"
-           th:text="${error}">Validation error</p>
-    </div>
-    <div>
-        <label th:text="#{label.user.confirmPass}">confirm</label>
-        <input type="password" th:field="*{matchingPassword}"/>
-        <p th:each="error : ${#fields.errors('matchingPassword')}"
-           th:text="${error}">Validation error</p>
-    </div>
-        <label th:text="#{label.user.type}">type</label></br>
-    <input th:field="*{userType}" th:value="${T(virtuslab.workshops.kotlin.user.dto.AcceptableUserTypes).PARTICIPANT}"
-           type="radio"/>
-        <label th:text="Participant"/>
-    <input th:field="*{userType}" th:value="${T(virtuslab.workshops.kotlin.user.dto.AcceptableUserTypes).ORGANIZER}"
-           type="radio"/>
-        <label th:text="Organizer"/>
-        <p th:each="error : ${#fields.errors('userType')}"
-           th:text="${error}">Validation error</p>
-    </div>
-    <br>
-    <button type="submit" th:text="#{label.form.submit}">submit</button>
-</form>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{css/style.css}"/>
 
-<a th:href="@{/login.html}" th:text="#{label.form.loginLink}">login</a>
+    <meta name="theme-color" content="#563d7c">
+
+</head>
+<body class="text-center fixed-page-height">
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+    <main class="inner cover" role="main">
+        <div class="row">
+            <div class="col-md-5 mx-auto">
+                <div id="first">
+                    <div class="myform form ">
+                        <h1 th:text="#{label.form.title}">form</h1>
+                        <form action="#" th:action="@{/registration}" th:object="${userDto}" method="POST"
+                              enctype="utf8">
+                            <div>
+                                <label th:text="#{label.user.firstName}">first</label>
+                                <input th:field="*{firstName}"/>
+                                <p th:each="error: ${#fields.errors('firstName')}"
+                                   th:text="${error}">Validation error</p>
+                            </div>
+                            <div>
+                                <label th:text="#{label.user.lastName}">last</label>
+                                <input th:field="*{lastName}"/>
+                                <p th:each="error : ${#fields.errors('lastName')}"
+                                   th:text="${error}">Validation error</p>
+                            </div>
+                            <div>
+                                <label th:text="#{label.user.email}">email</label>
+                                <input type="email" th:field="*{email}"/>
+                                <p th:each="error : ${#fields.errors('email')}"
+                                   th:text="${error}">Validation error</p>
+                            </div>
+                            <div>
+                                <label th:text="#{label.user.password}">password</label>
+                                <input type="password" th:field="*{password}"/>
+                                <p th:each="error : ${#fields.errors('password')}"
+                                   th:text="${error}">Validation error</p>
+                            </div>
+                            <div>
+                                <label th:text="#{label.user.confirmPass}">confirm</label>
+                                <input type="password" th:field="*{matchingPassword}"/>
+                                <p th:each="error : ${#fields.errors('matchingPassword')}"
+                                   th:text="${error}">Validation error</p>
+                            </div>
+                            <label th:text="#{label.user.type}">type</label></br>
+                            <input th:field="*{userType}"
+                                   th:value="${T(com.virtuslab.workshops.kotlin.user.dto.AcceptableUserTypes).PARTICIPANT}"
+                                   type="radio"/>
+                            <label th:text="Participant"/>
+                            <input th:field="*{userType}"
+                                   th:value="${T(com.virtuslab.workshops.kotlin.user.dto.AcceptableUserTypes).ORGANIZER}"
+                                   type="radio"/>
+                            <label th:text="Organizer"/>
+                            <p th:each="error : ${#fields.errors('userType')}"
+                               th:text="${error}">Validation error</p>
+                            <br>
+                            <button class="btn btn-primary" type="submit" th:text="#{label.form.submit}">submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 20px">
+            <a class="btn btn-success" th:href="@{/login.html}" th:text="#{label.form.loginLink}">login</a>
+        </div>
+    </main>
+</div>
+<footer class="mastfoot mt-auto">
+    <div class="inner">
+        <p>VirtusLab</p>
+    </div>
+</footer>
 </body>
 </html>
