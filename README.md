@@ -10,7 +10,7 @@
 
 ## Wymagania konieczne do uruchomienia aplikacji:
 
-1. Minimalna wersja JDK 8, zalecana wersja JDA 11.
+1. Minimalna wersja JDK 8, zalecana wersja JDK 11.
 2. Zalecana wersja IDE: Intellij 2020.1.4
 3. Używana wersja gradle 5.6.2
 
