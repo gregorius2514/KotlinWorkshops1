@@ -42,10 +42,12 @@ dependencies {
     }
 
     testCompile("org.mockito:mockito-core:3.3.0")
+    testCompile("org.testcontainers:postgresql:1.14.3")
 }
 tasks.withType<Test> {
     useJUnitPlatform()
 }
+
 tasks.withType<KotlinCompile> {
     kotlinOptions {
         freeCompilerArgs = listOf("-Xjsr305=strict")
